@@ -1,7 +1,9 @@
 # Test Technique SIG-01 — Accessibilité scolaire dans la préfecture de Zio
 
-> **Programme** : PDAAP — Digitalisation des Administrations Publiques du Togo  
-> **Poste** : SIG Analyst Junior  
+
+---
+
+> **Poste** : SIG Analyst  
 > **Durée** : 3 heures  
 > **Validation** : `uv sync && uv run pytest`
 
@@ -9,7 +11,7 @@
 
 ## Contexte
 
-Dans le cadre du PDAAP, le Togo Data Lab souhaite produire des indicateurs géospatiaux pour le pilotage des politiques publiques. L'un des enjeux majeurs du Ministère de l'Éducation et de la Formation Professionnelle est de mesurer l'**accessibilité géographique aux établissements scolaires** sur l'ensemble du territoire.
+Dans le cadre de ce scénario fictif, l'objectif est de produire des indicateurs géospatiaux pour le pilotage des politiques publiques. L'un des enjeux majeurs de ce cas d'étude est de mesurer l'**accessibilité géographique aux établissements scolaires** sur l'ensemble du territoire.
 
 Vous travaillez sur un cas pilote : la **préfecture de Zio** (région Maritime), qui compte environ 293 000 habitants et plus de 1 000 établissements scolaires répartis dans 16 cantons. Votre mission est de calculer la **distance moyenne d'accès à l'école la plus proche** pour la population, par catégorie d'établissement, puis d'agréger ces résultats au niveau cantonal et communal pour identifier les zones mal desservies.
 
@@ -85,7 +87,7 @@ Pour **chaque point de population**, calculer la distance (en mètres) à l'éta
 - Distance au **lycée** le plus proche
 
 **Exigences** :
-- Le calcul doit être **performant** : avec 112 466 points de population et jusqu'à 533 établissements par catégorie, le candidat doit choisir et implémenter une méthode de calcul efficace. Le calcul complet doit s'exécuter en moins de **120 secondes**.
+- Le calcul doit être **performant** : avec 112 466 points de population et jusqu'à 533 établissements par catégorie, le candidat doit choisir et implémenter une méthode de calcul efficace. 
 - Les distances doivent être en **mètres**. Le candidat justifie son approche (distance géodésique, projection locale, ou autre).
 - Le résultat est un DataFrame avec les colonnes de population d'origine + 3 colonnes de distance ajoutées.
 - Exporter le résultat dans `data/output/population_distances.parquet`.
@@ -104,11 +106,7 @@ Pour **chaque point de population**, calculer la distance (en mètres) à l'éta
 
    **⚠️ Hypothèse forte** : ces proportions sont une estimation grossière appliquée de manière homogène sur tout le territoire. Elles ne reflètent pas la réalité démographique locale, qui peut varier significativement entre zones urbaines et rurales, et selon les données de recensement réelles. De même, la distance moyenne obtenue dépend directement de la résolution spatiale de la source de population (~30m) — une résolution différente donnerait des résultats différents. Le candidat doit mentionner ces limites dans son analyse.
 
-3. **Calculer la distance moyenne pondérée** d'accès à l'école la plus proche, par catégorie. La pondération se fait par la population scolaire estimée de chaque point :
-
-   ```
-   distance_moyenne_primaire = Σ(dist_primaire_i × pop_primaire_i) / Σ(pop_primaire_i)
-   ```
+3. **Calculer la distance moyenne pondérée** d'accès à l'école la plus proche, par catégorie. La pondération se fait par la population scolaire estimée de chaque point.
 
    Calculer cette distance moyenne **à deux niveaux d'agrégation** :
    - **Par canton** (16 cantons)
