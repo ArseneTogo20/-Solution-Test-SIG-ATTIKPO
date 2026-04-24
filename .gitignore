@@ -1,9 +1,22 @@
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 .venv/
-*.egg-info/
+env/
+venv/
+.env
+
+# Tests
 .pytest_cache/
-data/output/*.parquet
-output/viz/*
-*.duckdb
-*.duckdb.wal
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+
+# Divers
+.DS_Store
+*.log
